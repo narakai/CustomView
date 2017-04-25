@@ -7,8 +7,11 @@ import android.view.MotionEvent;
 import android.view.View;
 
 
+import com.example.laileon.customview.view.PieData;
+import com.example.laileon.customview.view.PieView;
 import com.example.laileon.customview.view.RoundIndicatorView;
 
+import java.util.ArrayList;
 import java.util.Random;
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -16,6 +19,8 @@ import butterknife.ButterKnife;
 public class MainActivity extends AppCompatActivity {
     @Bind(R.id.round)
     RoundIndicatorView mRoundIndicatorView;
+    @Bind(R.id.pieview)
+    PieView mPieView;
 
 
     @Override
@@ -32,6 +37,19 @@ public class MainActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+        ArrayList<PieData> datas = new ArrayList<>();
+        PieData pieData = new PieData("sloop", 60);
+        PieData pieData2 = new PieData("sloop", 30);
+        PieData pieData3 = new PieData("sloop", 40);
+        PieData pieData4 = new PieData("sloop", 20);
+        PieData pieData5 = new PieData("sloop", 20);
+        datas.add(pieData);
+        datas.add(pieData2);
+        datas.add(pieData3);
+        datas.add(pieData4);
+        datas.add(pieData5);
+        mPieView.setData(datas);
     }
 
 }
