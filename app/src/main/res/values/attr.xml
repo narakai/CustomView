@@ -37,6 +37,11 @@
         <attr name="border" format="dimension"/>
     </declare-styleable>
 
+    <declare-styleable name="Wave">
+        <attr name="color" format="color"/>
+        <attr name="text" format="string"/>
+    </declare-styleable>
+
 </resources>
 
     <!--定义了字体，字体颜色，字体大小3个属性，format是值该属性的取值类型:-->
