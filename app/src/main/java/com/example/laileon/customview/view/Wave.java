@@ -23,6 +23,7 @@ import com.example.laileon.customview.utils.utils.DensityUtils;
  */
 
 //http://blog.csdn.net/guimianhao9833/article/details/74858472
+//绘制思路是：在canvas上绘制蓝色的文字 ——>将画布裁剪成圆形 ——>绘制波浪 ——>裁剪画布成波浪形 ——>绘制文字
 
 public class Wave extends View {
     private Paint mPaint;
@@ -45,7 +46,7 @@ public class Wave extends View {
 
     public Wave(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init(context,attrs);
+        init(context, attrs);
 
     }
 
@@ -91,17 +92,17 @@ public class Wave extends View {
         //上层的字
         textPaint.setColor(Color.WHITE);
 //        canvas.save(Canvas.CLIP_SAVE_FLAG);
-            //裁剪成圆形
-            Path o = new Path();
-            o.addCircle(mWidth / 2, mHeight / 2, mWidth / 2, Path.Direction.CCW);
-            canvas.clipPath(o);
-            //生成闭合波浪路径
-            path = getActionPath(currentPercent);
-            //画波浪
-            canvas.drawPath(path, mPaint);
-            //裁剪文字
-            canvas.clipPath(path);
-            drawCenterText(canvas, textPaint, text);
+        //裁剪成圆形
+        Path o = new Path();
+        o.addCircle(mWidth / 2, mHeight / 2, mWidth / 2, Path.Direction.CCW);
+        canvas.clipPath(o);
+        //生成闭合波浪路径
+        path = getActionPath(currentPercent);
+        //画波浪
+        canvas.drawPath(path, mPaint);
+        //裁剪文字
+        canvas.clipPath(path);
+        drawCenterText(canvas, textPaint, text);
 //        canvas.restore();
     }
 
@@ -148,6 +149,7 @@ public class Wave extends View {
         return path;
     }
 
+    //文字绘于控件正中心
     private void drawCenterText(Canvas canvas, Paint textPaint, String text) {
         Rect rect = new Rect(0, 0, mWidth, mHeight);
         textPaint.setTextAlign(Paint.Align.CENTER);
