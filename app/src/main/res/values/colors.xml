@@ -104,4 +104,7 @@
     <color name="full_service_use_now">#508700</color>
     <color name="flight_use_now">#0078aa</color>
 
+    <color name="dDVTransparentGray">#99000000</color>
+    <color name="dDVColorPrimary">@color/colorPrimary</color>
+
 </resources>

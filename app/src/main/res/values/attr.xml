@@ -42,6 +42,11 @@
         <attr name="text" format="string"/>
     </declare-styleable>
 
+    <declare-styleable name="DropDownView">
+        <attr name="containerBackgroundColor" format="color" />
+        <attr name="overlayColor" format="color"/>
+    </declare-styleable>
+
 </resources>
 
     <!--定义了字体，字体颜色，字体大小3个属性，format是值该属性的取值类型:-->
