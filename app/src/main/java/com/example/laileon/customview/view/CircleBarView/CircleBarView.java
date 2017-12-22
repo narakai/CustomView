@@ -1,5 +1,6 @@
 package com.example.laileon.customview.view.CircleBarView;
 
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
@@ -7,9 +8,8 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.Transformation;
 
 import com.example.laileon.customview.R;
 import com.example.laileon.customview.utils.utils.DensityUtils;
@@ -22,7 +22,6 @@ import com.example.laileon.customview.utils.utils.ViewUtils;
 public class CircleBarView extends View {
     private Paint rPaint;//绘制矩形的画笔
     private Paint progressPaint;//绘制圆弧的画笔
-    private CircleBarAnim anim;
 
     private Paint bgPaint;//绘制背景圆弧的画笔
 
@@ -38,6 +37,8 @@ public class CircleBarView extends View {
     private int bgColor;//背景圆弧颜色
     private float barWidth;//圆弧进度条宽度
     private RectF mRectF;//绘制圆弧的矩形区域
+    private ObjectAnimator animator;//用属性动画的ObjectAnimator
+    private static final String TAG = "CircleBarView";
 
     public CircleBarView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -45,7 +46,6 @@ public class CircleBarView extends View {
     }
 
     private void init(Context context, AttributeSet attrs) {
-        anim = new CircleBarAnim();
         rPaint = new Paint();
         rPaint.setStyle(Paint.Style.STROKE);//只描边，不填充
         rPaint.setColor(Color.RED);
@@ -71,11 +71,11 @@ public class CircleBarView extends View {
         mRectF = new RectF();
 
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.CircleBarView);
-        progressColor = typedArray.getColor(R.styleable.CircleBarView_progress_color,Color.GREEN);//默认为绿色
-        bgColor = typedArray.getColor(R.styleable.CircleBarView_bg_color,Color.GRAY);//默认为灰色
-        startAngle = typedArray.getFloat(R.styleable.CircleBarView_start_angle,0);//默认为0
-        sweepAngle = typedArray.getFloat(R.styleable.CircleBarView_sweep_angle,360);//默认为360
-        barWidth = typedArray.getDimension(R.styleable.CircleBarView_bar_width,DensityUtils.dip2px(context,10));//默认为10dp
+        progressColor = typedArray.getColor(R.styleable.CircleBarView_progress_color, Color.GREEN);//默认为绿色
+        bgColor = typedArray.getColor(R.styleable.CircleBarView_bg_color, Color.GRAY);//默认为灰色
+        startAngle = typedArray.getFloat(R.styleable.CircleBarView_start_angle, 0);//默认为0
+        sweepAngle = typedArray.getFloat(R.styleable.CircleBarView_sweep_angle, 360);//默认为360
+        barWidth = typedArray.getDimension(R.styleable.CircleBarView_bar_width, DensityUtils.dip2px(context, 10));//默认为10dp
         typedArray.recycle();//typedArray用完之后需要回收，防止内存泄漏
 
         progressPaint.setColor(progressColor);
@@ -109,25 +109,27 @@ public class CircleBarView extends View {
         //这里角度0对应的是三点钟方向，顺时针方向递增
 //        canvas.drawRect(rectF, rPaint);
         canvas.drawArc(mRectF, startAngle, sweepAngle, false, bgPaint);
-        canvas.drawArc(mRectF, startAngle, progressSweepAngle, false, progressPaint);
-    }
-
-    public class CircleBarAnim extends Animation {
-
-        public CircleBarAnim() {
-        }
-
-        @Override
-        protected void applyTransformation(float interpolatedTime, Transformation t) {
-            super.applyTransformation(interpolatedTime, t);
-            progressSweepAngle = interpolatedTime * sweepAngle * (progressNum / maxNum);//这里计算进度条的比例
-        }
+        canvas.drawArc(mRectF, startAngle, sweepAngle * progressNum / maxNum, false, progressPaint);
     }
 
     //写个方法给外部调用，用来设置动画时间
     public void setProgressNum(float progressNum, int time) {
-        this.progressNum = progressNum;
-        anim.setDuration(time);
-        this.startAnimation(anim);
+        setProgress(progressNum);
+        animator.setDuration(time);
+        animator.start();
     }
+
+    // 创建 getter 方法
+    public float getProgress() {
+        return progressNum;
+    }
+
+    // 创建 setter 方法
+    public void setProgress(float progress) {
+        this.progressNum = progress;
+        animator = ObjectAnimator.ofFloat(this, "progress", 0, progressNum);
+        Log.d(TAG, "setProgress: " + progress);
+        invalidate();
+    }
+
 }
