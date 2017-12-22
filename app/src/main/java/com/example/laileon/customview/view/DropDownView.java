@@ -30,7 +30,7 @@ import com.example.laileon.customview.R;
  */
 
 //https://github.com/AnthonyFermin/DropDownView
-    
+
 public class DropDownView extends RelativeLayout {
 
     private static final long COLLAPSE_TRANSITION_DURATION = 250L;
