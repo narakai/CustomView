@@ -1,14 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
-    android:layout_weight="2"
+    android:layout_weight="1"
+    android:background="@color/orange"
     >
+
+    <com.example.laileon.customview.view.FallingView.FallingView
+        android:id="@+id/falling"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"/>
 
     <!--<com.example.laileon.customview.view.CustomTitleView-->
         <!--android:padding="20dp"-->
@@ -38,18 +43,18 @@
         <!--app:mUp="false"-->
         <!--/>-->
 
-    <com.example.laileon.customview.view.RoundIndicatorView
-        android:id="@+id/round"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:layout_width="match_parent"
-        />
+    <!--<com.example.laileon.customview.view.RoundIndicatorView-->
+        <!--android:id="@+id/round"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="1"-->
+        <!--android:layout_width="match_parent"-->
+        <!--/>-->
 
-    <com.example.laileon.customview.view.PieView
-        android:id="@+id/pieview"
-        android:layout_weight="1"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"/>
+    <!--<com.example.laileon.customview.view.PieView.PieViewView&ndash;&gt;-->
+        <!--android:id="@+id/pieview"-->
+        <!--android:layout_weight="1"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"/>-->
 
     <!--<com.example.laileon.customview.view.CornerView.CornerTextView-->
         <!--android:layout_width="wrap_content"-->
