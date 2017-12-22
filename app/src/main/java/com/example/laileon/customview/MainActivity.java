@@ -65,7 +65,12 @@ public class MainActivity extends AppCompatActivity {
         bitmapCanvas.drawCircle(25, 25, 25, snowPaint);
 
         //初始化一个雪球样式的fallObject
-        FallingObject fallingObject = new FallingObject.Builder(bitmap).setSpeed(5).build();
+//        FallingObject fallingObject = new FallingObject.Builder(bitmap).setSpeed(5).build();
+        FallingObject.Builder builder = new FallingObject.Builder(getResources().getDrawable(R.drawable.snow));
+        FallingObject fallingObject = builder.setSpeed(5, true)
+                .setSize(80, 80, true)
+                .setWind(5, true, true)
+                .build();
         mFallingView.addFallObject(fallingObject, 20);
     }
 

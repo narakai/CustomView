@@ -6,7 +6,7 @@
     android:fitsSystemWindows="true"
     android:orientation="vertical"
     android:layout_weight="1"
-    android:background="@color/orange"
+    android:background="@color/white"
     >
 
     <com.example.laileon.customview.view.FallingView.FallingView
