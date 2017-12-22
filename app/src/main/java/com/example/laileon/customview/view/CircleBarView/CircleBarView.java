@@ -21,6 +21,7 @@ import com.example.laileon.customview.utils.utils.ViewUtils;
 
 public class CircleBarView extends View {
     private Paint rPaint;//绘制矩形的画笔
+    private Paint mPaint;//绘制文字的画笔
     private Paint progressPaint;//绘制圆弧的画笔
 
     private Paint bgPaint;//绘制背景圆弧的画笔
@@ -39,6 +40,7 @@ public class CircleBarView extends View {
     private RectF mRectF;//绘制圆弧的矩形区域
     private ObjectAnimator animator;//用属性动画的ObjectAnimator
     private static final String TAG = "CircleBarView";
+    private String mText;
 
     public CircleBarView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -83,6 +85,11 @@ public class CircleBarView extends View {
 
         bgPaint.setColor(bgColor);
         bgPaint.setStrokeWidth(barWidth);
+
+        mPaint = new Paint();
+        mPaint.setTextSize(120);
+        mPaint.setColor(Color.BLACK);
+        mPaint.setTextAlign(Paint.Align.CENTER);
     }
 
     @Override
@@ -110,6 +117,7 @@ public class CircleBarView extends View {
 //        canvas.drawRect(rectF, rPaint);
         canvas.drawArc(mRectF, startAngle, sweepAngle, false, bgPaint);
         canvas.drawArc(mRectF, startAngle, sweepAngle * progressNum / maxNum, false, progressPaint);
+        canvas.drawText(String.valueOf((int)progressNum) + "%", mRectF.centerX(), mRectF.centerY(), mPaint);
     }
 
     //写个方法给外部调用，用来设置动画时间
