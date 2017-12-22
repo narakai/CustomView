@@ -116,6 +116,7 @@ public class CircleBarView extends View {
     public void setProgressNum(float progressNum, int time) {
         setProgress(progressNum);
         animator.setDuration(time);
+//        animator.setInterpolator(new BounceInterpolator());
         animator.start();
     }
 

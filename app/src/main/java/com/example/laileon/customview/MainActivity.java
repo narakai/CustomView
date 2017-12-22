@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
                 .setWind(5, true, true)
                 .build();
         mFallingView.addFallObject(fallingObject, 20);
-        mCircleBarView.setProgressNum(80, 1000);
+        mCircleBarView.setProgressNum(100, 1000);
     }
 
 }
