@@ -1,68 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_weight="2"
+    android:background="@color/white"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
-    android:layout_weight="1"
-    android:background="@color/white"
     >
 
     <com.example.laileon.customview.view.FallingView.FallingView
         android:id="@+id/falling"
-        android:layout_weight="1"
         android:layout_width="match_parent"
-        android:layout_height="0dp"/>
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <com.example.laileon.customview.view.CircleBarView.CircleBarView
+        android:id="@+id/circle"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        app:bar_width="20dp"
+        app:bg_color="@color/gray_light"
+        app:progress_color="@color/red"
+        app:start_angle="135"
+        app:sweep_angle="270"
+        />
 
     <!--<com.example.laileon.customview.view.CustomTitleView-->
-        <!--android:padding="20dp"-->
-        <!--android:id="@+id/c1"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="0dp"-->
-        <!--android:layout_weight="1"-->
-        <!--app:titleText="3712"-->
-        <!--app:titleTextColor2="#ff0000"-->
-        <!--app:titleTextSize="40sp" />-->
+    <!--android:padding="20dp"-->
+    <!--android:id="@+id/c1"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="0dp"-->
+    <!--android:layout_weight="1"-->
+    <!--app:titleText="3712"-->
+    <!--app:titleTextColor2="#ff0000"-->
+    <!--app:titleTextSize="40sp" />-->
 
     <!--<com.example.laileon.customview.view.PriceView-->
-        <!--android:padding="10dp"-->
-        <!--android:id="@+id/price"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="0dp"-->
-        <!--android:layout_weight="1"-->
-        <!--android:paddingLeft="20dp"-->
-        <!--android:paddingRight="10dp"-->
-        <!--android:paddingTop="10dp"-->
-        <!--android:paddingBottom="10dp"-->
-        <!--app:mTitleText="1000"-->
-        <!--app:mTitleTextColor= "@color/colorPrimaryDark"-->
-        <!--app:mTitleTextSize="18sp"-->
-        <!--app:mBackground="#ff00ff"-->
-        <!--app:mCornerSize= "12"-->
-        <!--app:mUp="false"-->
-        <!--/>-->
+    <!--android:padding="10dp"-->
+    <!--android:id="@+id/price"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="0dp"-->
+    <!--android:layout_weight="1"-->
+    <!--android:paddingLeft="20dp"-->
+    <!--android:paddingRight="10dp"-->
+    <!--android:paddingTop="10dp"-->
+    <!--android:paddingBottom="10dp"-->
+    <!--app:mTitleText="1000"-->
+    <!--app:mTitleTextColor= "@color/colorPrimaryDark"-->
+    <!--app:mTitleTextSize="18sp"-->
+    <!--app:mBackground="#ff00ff"-->
+    <!--app:mCornerSize= "12"-->
+    <!--app:mUp="false"-->
+    <!--/>-->
 
     <!--<com.example.laileon.customview.view.RoundIndicatorView-->
-        <!--android:id="@+id/round"-->
-        <!--android:layout_height="0dp"-->
-        <!--android:layout_weight="1"-->
-        <!--android:layout_width="match_parent"-->
-        <!--/>-->
+    <!--android:id="@+id/round"-->
+    <!--android:layout_height="0dp"-->
+    <!--android:layout_weight="1"-->
+    <!--android:layout_width="match_parent"-->
+    <!--/>-->
 
     <!--<com.example.laileon.customview.view.PieView.PieViewView&ndash;&gt;-->
-        <!--android:id="@+id/pieview"-->
-        <!--android:layout_weight="1"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="0dp"/>-->
+    <!--android:id="@+id/pieview"-->
+    <!--android:layout_weight="1"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="0dp"/>-->
 
     <!--<com.example.laileon.customview.view.CornerView.CornerTextView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="0dp"-->
-        <!--android:layout_weight="1"-->
-        <!--android:text="12312321"-->
-        <!--app:backgroundColor="@color/gray"-->
-        <!--app:radius="15dp"-->
-        <!--/>-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="0dp"-->
+    <!--android:layout_weight="1"-->
+    <!--android:text="12312321"-->
+    <!--app:backgroundColor="@color/gray"-->
+    <!--app:radius="15dp"-->
+    <!--/>-->
 
 </LinearLayout>

@@ -27,6 +27,19 @@ public class ViewUtils {
     public ViewUtils() {
     }
 
+    public static int measureSize(int defaultSize, int measureSpec) {
+        int result = defaultSize;
+        int specMode = View.MeasureSpec.getMode(measureSpec);
+        int specSize = View.MeasureSpec.getSize(measureSpec);
+
+        if (specMode == View.MeasureSpec.EXACTLY) {
+            result = specSize;
+        } else if (specMode == View.MeasureSpec.AT_MOST) {
+            result = Math.min(result, specSize);
+        }
+        return result;
+    }
+
     /*The method about measure view****************************************************************/
 
     /**

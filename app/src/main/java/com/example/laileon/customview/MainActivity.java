@@ -7,6 +7,7 @@ import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.example.laileon.customview.view.CircleBarView.CircleBarView;
 import com.example.laileon.customview.view.FallingView.FallingObject;
 import com.example.laileon.customview.view.FallingView.FallingView;
 
@@ -20,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
 //    PieView mPieView;
     @Bind(R.id.falling)
     FallingView mFallingView;
+    @Bind(R.id.circle)
+    CircleBarView mCircleBarView;
 
     private Paint snowPaint;
     private Canvas bitmapCanvas;
@@ -72,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
                 .setWind(5, true, true)
                 .build();
         mFallingView.addFallObject(fallingObject, 20);
+        mCircleBarView.setProgressNum(100, 3000);
     }
 
 }
