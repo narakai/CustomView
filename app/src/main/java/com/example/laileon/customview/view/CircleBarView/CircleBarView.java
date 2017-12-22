@@ -29,7 +29,6 @@ public class CircleBarView extends View {
     private float progressNum;//可以更新的进度条数值
     private float maxNum;//进度条最大值
 
-    private float progressSweepAngle;//进度条圆弧扫过的角度
     private float startAngle;//背景圆弧的起始角度
     private float sweepAngle;//背景圆弧扫过的角度
 
@@ -40,7 +39,6 @@ public class CircleBarView extends View {
     private RectF mRectF;//绘制圆弧的矩形区域
     private ObjectAnimator animator;//用属性动画的ObjectAnimator
     private static final String TAG = "CircleBarView";
-    private String mText;
 
     public CircleBarView(Context context, AttributeSet attrs) {
         super(context, attrs);
