@@ -6,10 +6,12 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 
 import com.example.laileon.customview.view.CircleBarView.CircleBarView;
 import com.example.laileon.customview.view.FallingView.FallingObject;
 import com.example.laileon.customview.view.FallingView.FallingView;
+import com.example.laileon.customview.view.MusicButtonView;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -23,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
     FallingView mFallingView;
     @Bind(R.id.circle)
     CircleBarView mCircleBarView;
+    @Bind(R.id.music_btn)
+    MusicButtonView mImageView;
 
     private Paint snowPaint;
     private Canvas bitmapCanvas;
@@ -34,6 +38,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         draw();
+
+        mImageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mImageView.playMusic();
+            }
+        });
     }
 
     private void draw() {
