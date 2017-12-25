@@ -19,6 +19,8 @@ import com.example.laileon.customview.utils.utils.ViewUtils;
  * Created by laileon on 2017/12/22.
  */
 
+//https://www.jianshu.com/u/ace8dd06905f
+    
 public class CircleBarView extends View {
     private Paint rPaint;//绘制矩形的画笔
     private Paint mPaint;//绘制文字的画笔
