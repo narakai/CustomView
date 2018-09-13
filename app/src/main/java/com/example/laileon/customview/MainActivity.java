@@ -21,8 +21,8 @@ public class MainActivity extends AppCompatActivity {
 //    RoundIndicatorView mRoundIndicatorView;
 //    @Bind(R.id.pieview)
 //    PieView mPieView;
-    @Bind(R.id.falling)
-    FallingView mFallingView;
+//    @Bind(R.id.falling)
+//    FallingView mFallingView;
     @Bind(R.id.circle)
     CircleBarView mCircleBarView;
     @Bind(R.id.music_btn)
@@ -71,22 +71,22 @@ public class MainActivity extends AppCompatActivity {
 //        mPieView.setData(datas);
 
         //绘制雪球bitmap
-        snowPaint = new Paint();
-        snowPaint.setColor(Color.WHITE);
-        snowPaint.setStyle(Paint.Style.FILL);
-        bitmap = Bitmap.createBitmap(50, 50, Bitmap.Config.ARGB_8888);
-        bitmapCanvas = new Canvas(bitmap);
-        bitmapCanvas.drawCircle(25, 25, 25, snowPaint);
+//        snowPaint = new Paint();
+//        snowPaint.setColor(Color.WHITE);
+//        snowPaint.setStyle(Paint.Style.FILL);
+//        bitmap = Bitmap.createBitmap(50, 50, Bitmap.Config.ARGB_8888);
+//        bitmapCanvas = new Canvas(bitmap);
+//        bitmapCanvas.drawCircle(25, 25, 25, snowPaint);
 
         //初始化一个雪球样式的fallObject
 //        FallingObject fallingObject = new FallingObject.Builder(bitmap).setSpeed(5).build();
-        FallingObject.Builder builder = new FallingObject.Builder(getResources().getDrawable(R.drawable.snow));
-        FallingObject fallingObject = builder.setSpeed(5, true)
-                .setSize(80, 80, true)
-                .setWind(5, true, true)
-                .build();
-        mFallingView.addFallObject(fallingObject, 20);
-        mCircleBarView.setProgressNum(100, 1000);
+//        FallingObject.Builder builder = new FallingObject.Builder(getResources().getDrawable(R.drawable.snow));
+//        FallingObject fallingObject = builder.setSpeed(5, true)
+//                .setSize(80, 80, true)
+//                .setWind(5, true, true)
+//                .build();
+//        mFallingView.addFallObject(fallingObject, 20);
+//        mCircleBarView.setProgressNum(100, 1000);
     }
 
 }
