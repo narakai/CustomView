@@ -8,10 +8,14 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
+import com.example.laileon.customview.view.ChartView2;
 import com.example.laileon.customview.view.CircleBarView.CircleBarView;
 import com.example.laileon.customview.view.FallingView.FallingObject;
 import com.example.laileon.customview.view.FallingView.FallingView;
 import com.example.laileon.customview.view.MusicButtonView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -27,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
     CircleBarView mCircleBarView;
     @Bind(R.id.music_btn)
     MusicButtonView mImageView;
+    @Bind(R.id.chart2)
+    ChartView2 mChartView2;
 
     private Paint snowPaint;
     private Canvas bitmapCanvas;
@@ -37,8 +43,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        draw();
-
+//        draw();
+        setData();
         mImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,8 +53,28 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void draw() {
-        //        final Random random = new Random();
+    private void setData() {
+        ChartView2.ChartData mChart = new ChartView2.ChartData();
+        List<Float> prices = new ArrayList<>();
+        List<String> labels = new ArrayList<>();
+        prices.add(1234.1f);
+        prices.add(1784.1f);
+        prices.add(1904.1f);
+        prices.add(884.1f);
+
+        labels.add("Mon");
+        labels.add("Tue");
+        labels.add("Thu");
+        labels.add("Wen");
+
+        mChart.setPrices(prices);
+        mChart.setLabels(labels);
+
+        mChartView2.updateChartData(mChart);
+    }
+
+//    private void draw() {
+    //        final Random random = new Random();
 //        mRoundIndicatorView.setOnTouchListener(new View.OnTouchListener() {
 //            @Override
 //            public boolean onTouch(View v, MotionEvent event) {
@@ -70,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
 //        datas.add(pieData5);
 //        mPieView.setData(datas);
 
-        //绘制雪球bitmap
+    //绘制雪球bitmap
 //        snowPaint = new Paint();
 //        snowPaint.setColor(Color.WHITE);
 //        snowPaint.setStyle(Paint.Style.FILL);
@@ -78,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
 //        bitmapCanvas = new Canvas(bitmap);
 //        bitmapCanvas.drawCircle(25, 25, 25, snowPaint);
 
-        //初始化一个雪球样式的fallObject
+    //初始化一个雪球样式的fallObject
 //        FallingObject fallingObject = new FallingObject.Builder(bitmap).setSpeed(5).build();
 //        FallingObject.Builder builder = new FallingObject.Builder(getResources().getDrawable(R.drawable.snow));
 //        FallingObject fallingObject = builder.setSpeed(5, true)
@@ -87,6 +113,6 @@ public class MainActivity extends AppCompatActivity {
 //                .build();
 //        mFallingView.addFallObject(fallingObject, 20);
 //        mCircleBarView.setProgressNum(100, 1000);
-    }
+//    }
 
 }

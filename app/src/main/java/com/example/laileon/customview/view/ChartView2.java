@@ -9,8 +9,10 @@ import android.graphics.Path;
 import android.graphics.Point;
 import android.graphics.RectF;
 import android.graphics.Shader;
+import android.graphics.Typeface;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 import com.example.laileon.customview.utils.utils.DensityUtils;
@@ -20,6 +22,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class ChartView2 extends View {
+    private static final String TAG = "ChartView2";
 
     private List<Point> mPointList = new ArrayList<>();
 
@@ -67,7 +70,6 @@ public class ChartView2 extends View {
     private void init(Context context) {
         mContext = context;
         mLeftRightMargin = DensityUtils.dip2px(context, 10);
-        mShader = new LinearGradient(0, 0, 0, DensityUtils.dip2px(context, 100), new int[]{0x3000bedc, 0x0000bedc}, null, Shader.TileMode.REPEAT);
     }
 
     public void updateChartData(ChartData chartData) {
@@ -100,17 +102,81 @@ public class ChartView2 extends View {
         mLowerPath.reset();
         mSharePath.reset();
 
-        translate(canvas.getHeight(), canvas.getWidth());
+        translate(getMeasuredHeight(), getMeasuredWidth());
 
         //曲线
-        mPaint.setStrokeWidth(DensityUtils.dip2px(mContext, 1));
         measurePath();
+        mPaint.setStrokeWidth(DensityUtils.dip2px(mContext, 1));
         mPaint.setStyle(Paint.Style.STROKE);
         canvas.drawPath(mPath, mPaint);
         mPaint.setStyle(Paint.Style.FILL);
         mPaint.setShader(mShader);
         canvas.drawPath(mSharePath, mPaint);
 
+//        mPaint.setShader(null);
+//        mPaint.setStrokeWidth(DensityUtils.dip2px(mContext,0.5f));
+//        mPaint.setStyle(Paint.Style.FILL);
+//        for (int i = 0; i < mPointList.size(); i++) {
+//            Point p = mPointList.get(i);
+//            float f = mChartData.getPrices().get(i);
+//            int price = (int) f;
+//
+//            //line
+//            mPaint.setColor(Color.GRAY);
+//            canvas.drawLine(p.x, getHeight() * 0.125f, p.x, getHeight() * 0.85f, mPaint);
+//
+//            //circle
+//            if (price > 0) {
+//                mPaint.setColor(Color.BLUE);
+//                canvas.drawCircle(p.x, p.y, DensityUtils.dip2px(mContext,3.5f), mPaint);
+//                mPaint.setColor(Color.WHITE);
+//                canvas.drawCircle(p.x, p.y, DensityUtils.dip2px(mContext,2.5f), mPaint);
+//            }
+//
+//            //month
+//            mPaint.setTypeface(Typeface.DEFAULT);
+//            mPaint.setColor(Color.GRAY);
+//            mPaint.setTextSize(DensityUtils.sp2px(mContext,9));
+//            canvas.drawText(mChartData.getLabels().get(i), p.x - mPaint.measureText(mChartData.getLabels().get(i)) / 2, getHeight() * 0.95f, mPaint);
+//
+//            //price
+//            if (price > 0) {
+//                mPaint.setTextSize(DensityUtils.sp2px(mContext,11));
+//                mPaint.setTypeface(Typeface.DEFAULT_BOLD);
+//                String priceText = "" + price;
+//                if (price >= 1000) {
+//                    int t = price / 1000;
+////                    priceText = priceText.replace(mChartData.getSymbol() + t,mChartData.getSymbol() + t + ",");
+//                }
+//                float halfPriceLength = mPaint.measureText(priceText) / 2;
+//                final int rectHeight = DensityUtils.dip2px(mContext,18);
+//                final int rectWeight = (int) (halfPriceLength * 2 + DensityUtils.dip2px(mContext,10));
+//                final int topMargin = DensityUtils.dip2px(mContext,13);
+//                final int radius = DensityUtils.dip2px(mContext,3);
+//                final int length = DensityUtils.dip2px(mContext,5);
+//                if (price == mMaxPrice && price != mMinPrice) {
+//                    this.mPaint.setColor(Color.GRAY);
+//                    canvas.drawText(priceText, p.x - halfPriceLength, p.y - topMargin, mPaint);
+//                } else if (price == mMinPrice) {
+//                    mLowerPath.reset();
+//                    mLowerRect.set(p.x - rectWeight / 2, p.y - topMargin - rectHeight, p.x + rectWeight / 2, p.y - topMargin);
+//                    mLowerPath.addRoundRect(mLowerRect, radius, radius, Path.Direction.CW);
+//                    mLowerPath.moveTo(p.x, mLowerRect.bottom + length);
+//                    mLowerPath.lineTo(p.x - length, mLowerRect.bottom);
+//                    mLowerPath.lineTo(p.x + length, mLowerRect.bottom);
+//                    mLowerPath.close();
+//                    this.mPaint.setColor(Color.BLACK);
+//                    mPaint.setStyle(Paint.Style.FILL);
+//                    mPaint.setShadowLayer(DensityUtils.dip2px(mContext,1f), 0, 0, Color.GRAY);
+//                    canvas.drawPath(mLowerPath, this.mPaint);
+//                    mPaint.clearShadowLayer();
+//                    this.mPaint.setColor(Color.WHITE);
+//                    canvas.drawPath(mLowerPath, this.mPaint);
+//                    mPaint.setColor(Color.BLUE);
+//                    canvas.drawText(priceText, p.x - halfPriceLength, p.y - topMargin * 1.35f, mPaint);
+//                }
+//            }
+//        }
     }
 
     private void measurePath() {
@@ -203,8 +269,8 @@ public class ChartView2 extends View {
             currentPointY = nextPointY;
 
         }
-        mSharePath.lineTo(getWidth() - mLeftRightMargin, getHeight());
-        mSharePath.lineTo(mLeftRightMargin, getHeight());
+        mSharePath.lineTo(getMeasuredWidth() - mLeftRightMargin, getMeasuredHeight());
+        mSharePath.lineTo(mLeftRightMargin, getMeasuredHeight());
         mSharePath.close();
     }
 
@@ -217,10 +283,16 @@ public class ChartView2 extends View {
             f = height / 3;
         }
         mDivideWidth = width / 4;
+        mShader = new LinearGradient(0, 0, 0, height, new int[]{0x3000bedc, 0x0000bedc}, null, Shader.TileMode.REPEAT);
+
         for (int i = 0; i < mPointList.size(); i++) {
+            //y坐标
             int y = (int) ((ps.get(i) - min) / f + height * 0.25f);
+            //x坐标
             int x = i * mDivideWidth + mDivideWidth / 2;
             mPointList.get(i).set(x, height - y);
+            Log.d(TAG, "translate: " + " " + x + " " + (height - y));
+
             float ff = ps.get(i);
             if (ff < mMinPrice && ff > 0 || mMinPrice == 0) {
                 mMinPrice = (int) ff;
@@ -231,7 +303,15 @@ public class ChartView2 extends View {
         }
     }
 
-    private class ChartData {
+    public static class ChartData {
+        public void setPrices(List<Float> prices) {
+            this.prices = prices;
+        }
+
+        public void setLabels(List<String> labels) {
+            this.labels = labels;
+        }
+
         List<Float> prices;
         List<String> labels;
 
