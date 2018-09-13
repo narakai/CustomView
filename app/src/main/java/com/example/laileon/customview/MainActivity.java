@@ -5,14 +5,18 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 
 import com.example.laileon.customview.view.ChartView2;
 import com.example.laileon.customview.view.CircleBarView.CircleBarView;
 import com.example.laileon.customview.view.FallingView.FallingObject;
 import com.example.laileon.customview.view.FallingView.FallingView;
 import com.example.laileon.customview.view.MusicButtonView;
+import com.example.laileon.customview.view.misports.MISportsConnectView;
+import com.example.laileon.customview.view.misports.SportsData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,16 +31,21 @@ public class MainActivity extends AppCompatActivity {
 //    PieView mPieView;
 //    @Bind(R.id.falling)
 //    FallingView mFallingView;
-    @Bind(R.id.circle)
-    CircleBarView mCircleBarView;
-    @Bind(R.id.music_btn)
-    MusicButtonView mImageView;
+//    @Bind(R.id.circle)
+//    CircleBarView mCircleBarView;
+//    @Bind(R.id.music_btn)
+//    MusicButtonView mImageView;
     @Bind(R.id.chart2)
     ChartView2 mChartView2;
+    @Bind(R.id.mi_sports_loading_view)
+    MISportsConnectView mMISportsConnectView;
+    @Bind(R.id.connect_button)
+    Button mButton;
 
     private Paint snowPaint;
     private Canvas bitmapCanvas;
     private Bitmap bitmap;
+    private boolean connect = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,32 +54,55 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 //        draw();
         setData();
-        mImageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mImageView.playMusic();
-            }
-        });
+//        mImageView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                mImageView.playMusic();
+//            }
+//        });
     }
 
     private void setData() {
-        ChartView2.ChartData mChart = new ChartView2.ChartData();
-        List<Float> prices = new ArrayList<>();
-        List<String> labels = new ArrayList<>();
-        prices.add(1234.1f);
-        prices.add(1784.1f);
-        prices.add(1904.1f);
-        prices.add(884.1f);
+//        ChartView2.ChartData mChart = new ChartView2.ChartData();
+//        List<Float> prices = new ArrayList<>();
+//        List<String> labels = new ArrayList<>();
+//        prices.add(1234.1f);
+//        prices.add(1784.1f);
+//        prices.add(1904.1f);
+//        prices.add(884.1f);
+//
+//        labels.add("Mon");
+//        labels.add("Tue");
+//        labels.add("Thu");
+//        labels.add("Wen");
+//
+//        mChart.setPrices(prices);
+//        mChart.setLabels(labels);
+//
+//        mChartView2.updateChartData(mChart);
 
-        labels.add("Mon");
-        labels.add("Tue");
-        labels.add("Thu");
-        labels.add("Wen");
+        SportsData sportsData = new SportsData();
+        sportsData.step = 2714;
+        sportsData.distance = 1700;
+        sportsData.calories = 34;
+        sportsData.progress = 75;
+        mMISportsConnectView.setSportsData(sportsData);
 
-        mChart.setPrices(prices);
-        mChart.setLabels(labels);
+        final Button connectButton = (Button) findViewById(R.id.connect_button);
+        connectButton.setOnClickListener(new View.OnClickListener() {
 
-        mChartView2.updateChartData(mChart);
+            @Override
+            public void onClick(View v) {
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        connect = !connect;
+                        mMISportsConnectView.setConnected(connect);
+                        connectButton.setText(connect ? getString(R.string.disconnect) : getString(R.string.connect));
+                    }
+                }, 500);
+            }
+        });
     }
 
 //    private void draw() {

@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">CustomView</string>
     <string name="action_settings">Settings</string>
+
+    <string name="sub_title_separator">|</string>
+    <string name="sub_title_format" formatted="false">%.1f km | %d kcal</string>
+    <string name="connect">CONNECT</string>
+    <string name="disconnect">DISCONNECT</string>
 </resources>
