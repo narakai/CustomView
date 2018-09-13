@@ -63,23 +63,23 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setData() {
-//        ChartView2.ChartData mChart = new ChartView2.ChartData();
-//        List<Float> prices = new ArrayList<>();
-//        List<String> labels = new ArrayList<>();
-//        prices.add(1234.1f);
-//        prices.add(1784.1f);
-//        prices.add(1904.1f);
-//        prices.add(884.1f);
-//
-//        labels.add("Mon");
-//        labels.add("Tue");
-//        labels.add("Thu");
-//        labels.add("Wen");
-//
-//        mChart.setPrices(prices);
-//        mChart.setLabels(labels);
-//
-//        mChartView2.updateChartData(mChart);
+        ChartView2.ChartData mChart = new ChartView2.ChartData();
+        List<Float> prices = new ArrayList<>();
+        List<String> labels = new ArrayList<>();
+        prices.add(1234.1f);
+        prices.add(1784.1f);
+        prices.add(1904.1f);
+        prices.add(884.1f);
+
+        labels.add("Mon");
+        labels.add("Tue");
+        labels.add("Thu");
+        labels.add("Wen");
+
+        mChart.setPrices(prices);
+        mChart.setLabels(labels);
+
+        mChartView2.updateChartData(mChart);
 
         SportsData sportsData = new SportsData();
         sportsData.step = 2714;
