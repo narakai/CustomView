@@ -7,6 +7,7 @@ import android.graphics.Paint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextPaint;
 import android.view.View;
 import android.widget.Button;
 
@@ -15,6 +16,7 @@ import com.example.laileon.customview.view.CircleBarView.CircleBarView;
 import com.example.laileon.customview.view.FallingView.FallingObject;
 import com.example.laileon.customview.view.FallingView.FallingView;
 import com.example.laileon.customview.view.MusicButtonView;
+import com.example.laileon.customview.view.furigara.FuriganaView;
 import com.example.laileon.customview.view.misports.MISportsConnectView;
 import com.example.laileon.customview.view.misports.SportsData;
 
@@ -41,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
     MISportsConnectView mMISportsConnectView;
     @Bind(R.id.connect_button)
     Button mButton;
+    @Bind(R.id.fu_tv)
+    FuriganaView mFuriganaView;
 
     private Paint snowPaint;
     private Canvas bitmapCanvas;
@@ -103,6 +107,14 @@ public class MainActivity extends AppCompatActivity {
                 }, 500);
             }
         });
+
+        TextPaint tp = new TextPaint();
+        tp.setColor(getResources().getColor(R.color.colorAccent));
+        tp.setTextSize(60);
+        String text = "{彼女;かのじょ}は{寒気;さむけ}を{防;ふせ}ぐために{厚;あつ}いコートを{着;き}ていた。";
+        int mark_s = 11; // highlight 厚い in text (characters 11-13)
+        int mark_e = 13;
+        mFuriganaView.text_set(tp, text, mark_s, mark_e);
     }
 
 //    private void draw() {

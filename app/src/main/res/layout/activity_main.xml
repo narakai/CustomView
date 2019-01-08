@@ -49,6 +49,11 @@
         android:layout_alignParentBottom="true"
         android:text="Connect"/>
 
+    <com.example.laileon.customview.view.furigara.FuriganaView
+        android:id="@+id/fu_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
     <!--<LinearLayout-->
         <!--android:gravity="center"-->
         <!--android:layout_width="match_parent"-->
