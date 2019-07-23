@@ -1,15 +1,17 @@
 package com.example.laileon.customview;
 
+import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextPaint;
 import android.view.View;
 import android.widget.Button;
+
+import androidx.core.app.ActivityCompat;
 
 import com.example.laileon.customview.view.ChartView2;
 import com.example.laileon.customview.view.CircleBarView.CircleBarView;
@@ -23,27 +25,27 @@ import com.example.laileon.customview.view.misports.SportsData;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity {
-    //    @Bind(R.id.round)
+public class MainActivity extends Activity {
+    //    @BindView(R.id.round)
 //    RoundIndicatorView mRoundIndicatorView;
-//    @Bind(R.id.pieview)
+//    @BindView(R.id.pieview)
 //    PieView mPieView;
-//    @Bind(R.id.falling)
+//    @BindView(R.id.falling)
 //    FallingView mFallingView;
-//    @Bind(R.id.circle)
+//    @BindView(R.id.circle)
 //    CircleBarView mCircleBarView;
-//    @Bind(R.id.music_btn)
+//    @BindView(R.id.music_btn)
 //    MusicButtonView mImageView;
-    @Bind(R.id.chart2)
+    @BindView(R.id.chart2)
     ChartView2 mChartView2;
-    @Bind(R.id.mi_sports_loading_view)
+    @BindView(R.id.mi_sports_loading_view)
     MISportsConnectView mMISportsConnectView;
-    @Bind(R.id.connect_button)
+    @BindView(R.id.connect_button)
     Button mButton;
-    @Bind(R.id.fu_tv)
+    @BindView(R.id.fu_tv)
     FuriganaView mFuriganaView;
 
     private Paint snowPaint;

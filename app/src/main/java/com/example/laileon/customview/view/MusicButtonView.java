@@ -2,9 +2,10 @@ package com.example.laileon.customview.view;
 
 import android.animation.ObjectAnimator;
 import android.content.Context;
-import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
 import android.view.animation.LinearInterpolator;
+
+import androidx.appcompat.widget.AppCompatImageView;
 
 /**
  * Created by laileon on 2017/12/25.

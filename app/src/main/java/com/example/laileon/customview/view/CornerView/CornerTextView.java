@@ -6,13 +6,15 @@ import android.graphics.drawable.GradientDrawable;
 import android.util.AttributeSet;
 import android.view.Gravity;
 
+import androidx.appcompat.widget.AppCompatTextView;
+
 import com.example.laileon.customview.R;
 
 
 /**
  * Created by zengxianzi on 2016/5/31.
  */
-public class CornerTextView extends android.support.v7.widget.AppCompatTextView {
+public class CornerTextView extends AppCompatTextView {
 
     float radius = 0.0f;
 

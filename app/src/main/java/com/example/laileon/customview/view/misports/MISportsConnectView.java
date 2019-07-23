@@ -15,10 +15,11 @@ import android.graphics.Paint;
 import android.graphics.PathEffect;
 import android.graphics.RectF;
 import android.graphics.Shader;
-import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.view.View;
+
+import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 
 import com.example.laileon.customview.R;
 

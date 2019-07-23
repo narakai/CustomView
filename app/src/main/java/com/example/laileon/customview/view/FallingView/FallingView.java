@@ -2,10 +2,11 @@ package com.example.laileon.customview.view.FallingView;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewTreeObserver;
+
+import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 import java.util.List;
