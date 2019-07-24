@@ -10,6 +10,7 @@ import android.os.Handler;
 import android.text.TextPaint;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 
 import androidx.core.app.ActivityCompat;
 
@@ -50,6 +51,8 @@ public class MainActivity extends Activity {
     FuriganaView mFuriganaView;
     @BindView(R.id.ripple)
     RippleBackground rp;
+    @BindView(R.id.rp_fl)
+    FrameLayout rpFl;
 
     private Paint snowPaint;
     private Canvas bitmapCanvas;
@@ -69,7 +72,7 @@ public class MainActivity extends Activity {
 //                mImageView.playMusic();
 //            }
 //        });
-        rp.setOnClickListener(new View.OnClickListener() {
+        rpFl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 rp.startRippleAnimation();

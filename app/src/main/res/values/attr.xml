@@ -98,6 +98,13 @@
             <enum name="strokeRipple" value="1"/>
         </attr>
     </declare-styleable>
+
+    <declare-styleable name="MyCircleProgressBar">
+        <attr name="cpb_strokeWidth" format="dimension" />
+        <attr name="cpb_startColor" format="color"/>
+        <attr name="cpb_endColor" format="color"/>
+        <attr name="cpb_duration" format="integer"/>
+    </declare-styleable>
 </resources>
 
     <!--定义了字体，字体颜色，字体大小3个属性，format是值该属性的取值类型:-->
