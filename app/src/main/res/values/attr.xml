@@ -85,6 +85,19 @@
         <attr name="start_angle" format="float"></attr>
         <attr name="sweep_angle" format="float"></attr>
     </declare-styleable>
+
+    <declare-styleable name="RippleBackground">
+        <attr name="rb_color" format="color" />
+        <attr name="rb_strokeWidth" format="dimension"/>
+        <attr name="rb_radius" format="dimension"/>
+        <attr name="rb_duration" format="integer"/>
+        <attr name="rb_rippleAmount" format="integer"/>
+        <attr name="rb_scale" format="float"/>
+        <attr name="rb_type" format="enum">
+            <enum name="fillRipple" value="0"/>
+            <enum name="strokeRipple" value="1"/>
+        </attr>
+    </declare-styleable>
 </resources>
 
     <!--定义了字体，字体颜色，字体大小3个属性，format是值该属性的取值类型:-->

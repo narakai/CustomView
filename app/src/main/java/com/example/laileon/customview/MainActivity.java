@@ -18,6 +18,7 @@ import com.example.laileon.customview.view.CircleBarView.CircleBarView;
 import com.example.laileon.customview.view.FallingView.FallingObject;
 import com.example.laileon.customview.view.FallingView.FallingView;
 import com.example.laileon.customview.view.MusicButtonView;
+import com.example.laileon.customview.view.RippleBackground;
 import com.example.laileon.customview.view.furigara.FuriganaView;
 import com.example.laileon.customview.view.misports.MISportsConnectView;
 import com.example.laileon.customview.view.misports.SportsData;
@@ -39,14 +40,16 @@ public class MainActivity extends Activity {
 //    CircleBarView mCircleBarView;
 //    @BindView(R.id.music_btn)
 //    MusicButtonView mImageView;
-    @BindView(R.id.chart2)
-    ChartView2 mChartView2;
+//    @BindView(R.id.chart2)
+//    ChartView2 mChartView2;
     @BindView(R.id.mi_sports_loading_view)
     MISportsConnectView mMISportsConnectView;
     @BindView(R.id.connect_button)
     Button mButton;
     @BindView(R.id.fu_tv)
     FuriganaView mFuriganaView;
+    @BindView(R.id.ripple)
+    RippleBackground rp;
 
     private Paint snowPaint;
     private Canvas bitmapCanvas;
@@ -66,6 +69,12 @@ public class MainActivity extends Activity {
 //                mImageView.playMusic();
 //            }
 //        });
+        rp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                rp.startRippleAnimation();
+            }
+        });
     }
 
     private void setData() {
@@ -85,7 +94,7 @@ public class MainActivity extends Activity {
         mChart.setPrices(prices);
         mChart.setLabels(labels);
 
-        mChartView2.updateChartData(mChart);
+//        mChartView2.updateChartData(mChart);
 
         SportsData sportsData = new SportsData();
         sportsData.step = 2714;

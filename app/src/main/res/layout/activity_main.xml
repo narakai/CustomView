@@ -10,17 +10,29 @@
     android:orientation="vertical"
     >
 
+    <com.example.laileon.customview.view.RippleBackground
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:id="@+id/ripple"
+        app:rb_color="#0099CC"
+        app:rb_radius="32dp"
+        app:rb_rippleAmount="1"
+        app:rb_duration="2000"
+        app:rb_scale="2">
+
+    </com.example.laileon.customview.view.RippleBackground>
+
     <!--<com.example.laileon.customview.view.FallingView.FallingView-->
         <!--android:id="@+id/falling"-->
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="0dp"-->
         <!--android:layout_weight="1"/>-->
 
-    <com.example.laileon.customview.view.ChartView2
-        android:id="@+id/chart2"
-        android:layout_weight="1"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"/>
+    <!--<com.example.laileon.customview.view.ChartView2-->
+        <!--android:id="@+id/chart2"-->
+        <!--android:layout_weight="1"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"/>-->
 
     <!--<com.example.laileon.customview.view.CircleBarView.CircleBarView-->
         <!--android:layout_gravity="center"-->

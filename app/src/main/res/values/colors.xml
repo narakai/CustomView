@@ -108,4 +108,6 @@
     <color name="dDVColorPrimary">@color/colorPrimary</color>
 
     <color name="whiteTransparent">#88FFFFFF</color>
+
+    <color name="rippelColor">#0099CC</color>
 </resources>
