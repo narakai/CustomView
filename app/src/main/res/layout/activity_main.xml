@@ -11,6 +11,20 @@
         android:fitsSystemWindows="true"
         android:orientation="vertical">
 
+        <EditText
+            android:layout_marginTop="50dp"
+            android:hint="T1"
+            android:id="@+id/test1"
+            android:layout_width="match_parent"
+            android:layout_height="100dp" />
+
+        <EditText
+            android:hint="T2"
+            android:layout_marginTop="100dp"
+            android:id="@+id/test2"
+            android:layout_width="match_parent"
+            android:layout_height="100dp" />
+
         <FrameLayout
             android:id="@+id/rp_fl"
             android:layout_width="250dp"

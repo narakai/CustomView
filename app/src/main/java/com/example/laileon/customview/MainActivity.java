@@ -1,5 +1,6 @@
 package com.example.laileon.customview;
 
+import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -8,8 +9,10 @@ import android.graphics.Paint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.text.TextPaint;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 
 import androidx.core.app.ActivityCompat;
@@ -53,11 +56,17 @@ public class MainActivity extends Activity {
     RippleBackground rp;
     @BindView(R.id.rp_fl)
     FrameLayout rpFl;
+    @BindView(R.id.test1)
+    EditText t1;
+    @BindView(R.id.test2)
+    EditText t2;
 
     private Paint snowPaint;
     private Canvas bitmapCanvas;
     private Bitmap bitmap;
     private boolean connect = false;
+
+    private static final String TAG = "MainActivity";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,10 +81,26 @@ public class MainActivity extends Activity {
 //                mImageView.playMusic();
 //            }
 //        });
-        rpFl.setOnClickListener(new View.OnClickListener() {
+        t2.post(new Runnable() {
             @Override
-            public void onClick(View v) {
-                rp.startRippleAnimation();
+            public void run() {
+                float offset1 = t2.getY() - t1.getY();
+                rpFl.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        rp.startRippleAnimation();
+                        float realOff = 0;
+                        if(t2.getY() > t1.getY()){
+                            realOff = offset1;
+                            ObjectAnimator.ofFloat(t1, "translationY", realOff).setDuration(1000).start();
+                            ObjectAnimator.ofFloat(t2, "translationY", -realOff).setDuration(1000).start();
+                        } else {
+                            ObjectAnimator.ofFloat(t1, "translationY", -realOff).setDuration(1000).start();
+                            ObjectAnimator.ofFloat(t2, "translationY", realOff).setDuration(1000).start();
+                        }
+                        Log.d(TAG, "onClick: " + realOff);
+                    }
+                });
             }
         });
     }
