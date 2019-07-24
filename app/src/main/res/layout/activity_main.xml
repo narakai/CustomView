@@ -26,6 +26,8 @@
             <!--android:layout_height="100dp" />-->
 
         <FrameLayout
+            android:layout_marginLeft="57dp"
+            android:layout_marginRight="57dp"
             android:id="@+id/rp_fl"
             android:layout_width="296dp"
             android:layout_height="296dp"
@@ -36,33 +38,41 @@
                 android:id="@+id/ripple"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:rb_color="#0099CC"
+                app:rb_color="#FF5E8C"
                 app:rb_duration="2000"
-                app:rb_radius="70dp"
+                app:rb_radius="75dp"
                 app:rb_rippleAmount="3"
                 app:rb_scale="2">
 
+                <ImageView
+                    android:src="@mipmap/oval2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <ImageView
+                    android:layout_margin="20dp"
+                    android:src="@mipmap/oval3"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <!--<ImageView-->
+                    <!--android:layout_margin="50dp"-->
+                    <!--android:src="@mipmap/oval3"-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="match_parent" />-->
+
+
             </com.example.laileon.customview.view.RippleBackground>
 
-            <com.example.laileon.customview.view.SmoothRoundProgressBar2
-                android:id="@+id/progress_circular2"
-                android:layout_width="240dp"
-                android:layout_height="240dp"
-                android:layout_gravity="center"
-                 />
 
             <com.example.laileon.customview.view.SmoothRoundProgressBar
-                android:id="@+id/progress_circular"
-                android:layout_width="187dp"
-                android:layout_height="187dp"
+                android:background="@color/transparent"
                 android:layout_gravity="center"
+                android:id="@+id/progress_circular"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
                 app:cpb_strokeWidth="25dp" />
 
-            <View
-                android:background="@color/alpha_white"
-                android:id="@+id/mask"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
 
         </FrameLayout>
 

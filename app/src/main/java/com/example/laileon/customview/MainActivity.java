@@ -78,7 +78,7 @@ public class MainActivity extends Activity {
         ButterKnife.bind(this);
 //        draw();
         setData();
-//        rp.startRippleAnimation();
+        rp.startRippleAnimation();
 //        mImageView.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {

@@ -96,8 +96,8 @@ public class SmoothRoundProgressBar extends View {
 
             strokeWidth = dip2px(7);
 
-            startColor = Color.WHITE;
-            endColor = Color.LTGRAY;
+            startColor = Color.parseColor("#30FFFFFF");;
+            endColor = Color.parseColor("#80FFFFFF");
             duration = 1200;
 
 
