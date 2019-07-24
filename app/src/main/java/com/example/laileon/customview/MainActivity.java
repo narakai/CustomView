@@ -23,6 +23,7 @@ import com.example.laileon.customview.view.FallingView.FallingObject;
 import com.example.laileon.customview.view.FallingView.FallingView;
 import com.example.laileon.customview.view.MusicButtonView;
 import com.example.laileon.customview.view.RippleBackground;
+import com.example.laileon.customview.view.SmoothRoundProgressBar;
 import com.example.laileon.customview.view.furigara.FuriganaView;
 import com.example.laileon.customview.view.misports.MISportsConnectView;
 import com.example.laileon.customview.view.misports.SportsData;
@@ -56,10 +57,12 @@ public class MainActivity extends Activity {
     RippleBackground rp;
     @BindView(R.id.rp_fl)
     FrameLayout rpFl;
-    @BindView(R.id.test1)
-    EditText t1;
-    @BindView(R.id.test2)
-    EditText t2;
+//    @BindView(R.id.test1)
+//    EditText t1;
+//    @BindView(R.id.test2)
+//    EditText t2;
+    @BindView(R.id.progress_circular)
+    SmoothRoundProgressBar smoothRoundProgressBar;
 
     private Paint snowPaint;
     private Canvas bitmapCanvas;
@@ -75,34 +78,35 @@ public class MainActivity extends Activity {
         ButterKnife.bind(this);
 //        draw();
         setData();
+//        rp.startRippleAnimation();
 //        mImageView.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
 //                mImageView.playMusic();
 //            }
 //        });
-        t2.post(new Runnable() {
-            @Override
-            public void run() {
-                float offset1 = t2.getY() - t1.getY();
-                rpFl.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        rp.startRippleAnimation();
-                        float realOff = 0;
-                        if(t2.getY() > t1.getY()){
-                            realOff = offset1;
-                            ObjectAnimator.ofFloat(t1, "translationY", realOff).setDuration(1000).start();
-                            ObjectAnimator.ofFloat(t2, "translationY", -realOff).setDuration(1000).start();
-                        } else {
-                            ObjectAnimator.ofFloat(t1, "translationY", -realOff).setDuration(1000).start();
-                            ObjectAnimator.ofFloat(t2, "translationY", realOff).setDuration(1000).start();
-                        }
-                        Log.d(TAG, "onClick: " + realOff);
-                    }
-                });
-            }
-        });
+//        t2.post(new Runnable() {
+//            @Override
+//            public void run() {
+//                float offset1 = t2.getY() - t1.getY();
+//                rpFl.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        rp.startRippleAnimation();
+//                        float realOff = 0;
+//                        if(t2.getY() > t1.getY()){
+//                            realOff = offset1;
+//                            ObjectAnimator.ofFloat(t1, "translationY", realOff).setDuration(1000).start();
+//                            ObjectAnimator.ofFloat(t2, "translationY", -realOff).setDuration(1000).start();
+//                        } else {
+//                            ObjectAnimator.ofFloat(t1, "translationY", -realOff).setDuration(1000).start();
+//                            ObjectAnimator.ofFloat(t2, "translationY", realOff).setDuration(1000).start();
+//                        }
+//                        Log.d(TAG, "onClick: " + realOff);
+//                    }
+//                });
+//            }
+//        });
     }
 
     private void setData() {

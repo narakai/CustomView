@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.SweepGradient;
@@ -24,7 +25,7 @@ import com.example.laileon.customview.utils.utils.DensityUtils;
 /**
  * Created by Administrator on 2016/6/7 0007.
  */
-public class SmoothRoundProgressBar extends View {
+public class SmoothRoundProgressBar2 extends View {
 
     private static final String TAG = "SmoothRoundProgressBar";
 
@@ -35,7 +36,7 @@ public class SmoothRoundProgressBar extends View {
 
 //可以设置的值
     private int strokeWidth;
-//    private int strokeWidth2 = 10;
+    private int strokeWidth2 = 10;
     private int startColor;
     private int endColor;
 
@@ -62,23 +63,23 @@ public class SmoothRoundProgressBar extends View {
     private int ringWidth;
     private int ringHeight;
 
-    public SmoothRoundProgressBar(Context context) {
+    public SmoothRoundProgressBar2(Context context) {
         super(context);
         init(context, null);
     }
 
-    public SmoothRoundProgressBar(Context context, AttributeSet attrs) {
+    public SmoothRoundProgressBar2(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context, attrs);
     }
 
-    public SmoothRoundProgressBar(Context context, AttributeSet attrs, int defStyleAttr) {
+    public SmoothRoundProgressBar2(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context, attrs);
     }
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
-    public SmoothRoundProgressBar(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+    public SmoothRoundProgressBar2(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
         super(context, attrs, defStyleAttr, defStyleRes);
         init(context, attrs);
     }
@@ -96,8 +97,8 @@ public class SmoothRoundProgressBar extends View {
 
             strokeWidth = dip2px(7);
 
-            startColor = Color.WHITE;
-            endColor = Color.LTGRAY;
+            startColor = Color.parseColor("#25ABFF");
+            endColor = Color.parseColor("#28BAFF");
             duration = 1200;
 
 
@@ -151,16 +152,16 @@ public class SmoothRoundProgressBar extends View {
         //圆环的画笔
         ringPaint = new Paint();
         ringPaint.setAntiAlias(true);
-        ringPaint.setStrokeWidth(strokeWidth);
+        ringPaint.setStrokeWidth(10);
         ringPaint.setStyle(Paint.Style.STROKE);
         ringPaint.setStrokeJoin(Paint.Join.ROUND);
         ringPaint.setStrokeCap(Paint.Cap.ROUND);
-        ringPaint.setColor(startColor);
+        ringPaint.setColor(Color.parseColor("#C4D2E2"));
 
         ringPaint2 = new Paint();
         ringPaint2.setAntiAlias(true);
         ringPaint2.setStyle(Paint.Style.FILL);
-        ringPaint2.setColor(Color.BLUE);
+        ringPaint2.setColor(Color.parseColor("#80D8E4F2"));
 
 
         //开始的点的半圆画笔
@@ -171,6 +172,10 @@ public class SmoothRoundProgressBar extends View {
 //        halfRoundPaint.setStyle(Paint.Style.STROKE);
 //        halfRoundPaint.setStrokeJoin(Paint.Join.ROUND);
 //        halfRoundPaint.setStrokeCap(Paint.Cap.ROUND);
+
+        halfRoundPaint = new Paint();
+        halfRoundPaint.setAntiAlias(true);
+        halfRoundPaint.setStyle(Paint.Style.FILL);
 
 
     }
@@ -240,56 +245,6 @@ public class SmoothRoundProgressBar extends View {
 
     }
 
-
-//    private int measureWidth(int defaultWidth, int measureSpec) {
-//
-//        int specMode = MeasureSpec.getMode(measureSpec);
-//        int specSize = MeasureSpec.getSize(measureSpec);
-//        Log.e("YViewWidth", "---speSize = " + specSize + "");
-//
-//
-//        switch (specMode) {
-//            case MeasureSpec.AT_MOST:
-//                defaultWidth = specSize + getPaddingLeft() + getPaddingRight();
-//                Log.e("YViewWidth", "---speMode = AT_MOST");
-//                break;
-//            case MeasureSpec.EXACTLY:
-//                Log.e("YViewWidth", "---speMode = EXACTLY");
-//                defaultWidth = specSize;
-//                break;
-//            case MeasureSpec.UNSPECIFIED:
-//                Log.e("YViewWidth", "---speMode = UNSPECIFIED");
-//                defaultWidth = Math.max(defaultWidth, specSize);
-//        }
-//        return defaultWidth;
-//    }
-//
-//
-//    private int measureHeight(int defaultHeight, int measureSpec) {
-//
-//        int specMode = MeasureSpec.getMode(measureSpec);
-//        int specSize = MeasureSpec.getSize(measureSpec);
-//        Log.e("YViewHeight", "---speSize = " + specSize + "");
-//
-//        switch (specMode) {
-//            case MeasureSpec.AT_MOST:
-//                defaultHeight = specSize + getPaddingTop() + getPaddingBottom();
-//                Log.e("YViewHeight", "---speMode = AT_MOST");
-//                break;
-//            case MeasureSpec.EXACTLY:
-//                defaultHeight = specSize;
-//                Log.e("YViewHeight", "---speSize = EXACTLY");
-//                break;
-//            case MeasureSpec.UNSPECIFIED:
-//                defaultHeight = Math.max(defaultHeight, specSize);
-//                Log.e("YViewHeight", "---speSize = UNSPECIFIED");
-//                break;
-//        }
-//        return defaultHeight;
-//
-//
-//    }
-
     // 目前由于SweepGradient赋值只在构造函数，无法pre allocate & reuse instead
     @SuppressLint("DrawAllocation")
     @Override
@@ -300,17 +255,37 @@ public class SmoothRoundProgressBar extends View {
 
         final int cx = ringWidth / 2;
         final int cy = ringHeight / 2;
-        final int radius = ringWidth / 2;
+        final int radius = ringWidth / 2 - strokeWidth / 2;
 
         Log.d(TAG, "onDraw: " + cy + " " + cx);
+        //最外圈
+        canvas.drawCircle(cx, cy, ringHeight / 2, ringPaint2);
+        //圆环
+//        canvas.drawCircle(cx, cy, DensityUtils.dip2px(getContext(), 187) / 2, ringPaint);
+        //内层圆1
+        final SweepGradient sweepGradient = new SweepGradient(cx, cy, colors, null);
+        Matrix matrix = new Matrix();
+        matrix.setRotate(-270f, canvas.getWidth(), canvas.getHeight());
+        sweepGradient.setLocalMatrix(matrix);
+        halfRoundPaint.setShader(sweepGradient);
+        canvas.drawCircle(cx, cy, DensityUtils.dip2px(getContext(), 200) / 2, halfRoundPaint);
+        //内层圆2
+
+//        C4D2E2
+//        ringPaint2.setColor(Color.parseColor("#C4D2E2"));
+//        ringPaint2.setStyle(Paint.Style.STROKE);
+//        ringPaint2.setStrokeWidth(2);
+//        canvas.drawCircle(cx, cy, ringHeight / 2 - DensityUtils.dip2px(getContext(), 10), ringPaint2);
         //内圈
+//        final SweepGradient sweepGradient = new SweepGradient(cx, cy, colors, null);
+//        ringPaint2.setShader(sweepGradient);
 //        canvas.drawCircle(cx, cy, ringHeight / 2, ringPaint2);
 //        canvas.drawCircle(cx, cy, radius + strokeWidth2, halfRoundPaint);
 
         //渐变
-        final SweepGradient sweepGradient = new SweepGradient(cx, cy, colors, null);
-        ringPaint.setShader(sweepGradient);
-        canvas.drawCircle(cx, cy, radius-strokeWidth, ringPaint);
+//        final SweepGradient sweepGradient = new SweepGradient(cx, cy, colors, null);
+//        ringPaint.setShader(sweepGradient);
+//        canvas.drawCircle(cx, cy, radius-strokeWidth2, ringPaint);
        // canvas.restore();
 
         //画半弧和半圆
@@ -335,12 +310,12 @@ public class SmoothRoundProgressBar extends View {
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
 
-        animation = new RotateAnimation(0,359, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
-        animation.setDuration(duration);
-        animation.setRepeatCount(RotateAnimation.INFINITE);//无限循环
-        LinearInterpolator lin = new LinearInterpolator();//默认状态是随sdk不同而不同，5.0以上会一快一慢，这里用线性插值器限定其匀速转动
-        animation.setInterpolator(lin);
-        this.startAnimation(animation);
+//        animation = new RotateAnimation(0,359, Animation.RELATIVE_TO_SELF, 0.5f, Animation.RELATIVE_TO_SELF, 0.5f);
+//        animation.setDuration(duration);
+//        animation.setRepeatCount(RotateAnimation.INFINITE);//无限循环
+//        LinearInterpolator lin = new LinearInterpolator();//默认状态是随sdk不同而不同，5.0以上会一快一慢，这里用线性插值器限定其匀速转动
+//        animation.setInterpolator(lin);
+//        this.startAnimation(animation);
     }
 
     @Override
