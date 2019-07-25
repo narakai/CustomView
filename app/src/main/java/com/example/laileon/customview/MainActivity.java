@@ -14,11 +14,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
 
 import androidx.core.app.ActivityCompat;
 
+import com.example.laileon.customview.utils.utils.DensityUtils;
+import com.example.laileon.customview.view.BubbleDrawable;
 import com.example.laileon.customview.view.ChartView2;
 import com.example.laileon.customview.view.CircleBarView.CircleBarView;
+import com.example.laileon.customview.view.CornerView.CornerLayout2;
 import com.example.laileon.customview.view.FallingView.FallingObject;
 import com.example.laileon.customview.view.FallingView.FallingView;
 import com.example.laileon.customview.view.MusicButtonView;
@@ -63,6 +67,8 @@ public class MainActivity extends Activity {
 //    EditText t2;
     @BindView(R.id.progress_circular)
     SmoothRoundProgressBar smoothRoundProgressBar;
+    @BindView(R.id.test)
+    CornerLayout2 test;
 
     private Paint snowPaint;
     private Canvas bitmapCanvas;
@@ -79,6 +85,17 @@ public class MainActivity extends Activity {
 //        draw();
         setData();
         rp.startRippleAnimation();
+        test.post(new Runnable() {
+            @Override
+            public void run() {
+                BubbleDrawable bubbleDrawable = new BubbleDrawable();
+                bubbleDrawable.setBgColor(Color.BLUE);
+                bubbleDrawable.setCornerRadius(DensityUtils.dip2px(getApplicationContext(),10));
+                bubbleDrawable.setBubbleLength(DensityUtils.dip2px(getApplicationContext(),5));
+                bubbleDrawable.setArrowDirection(BubbleDrawable.ArrowDirection.BOTTOM);
+                test.setBackgroundDrawable(bubbleDrawable);
+            }
+        });
 //        mImageView.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View v) {
