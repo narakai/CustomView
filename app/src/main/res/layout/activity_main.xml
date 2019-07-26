@@ -57,8 +57,8 @@
             android:layout_marginLeft="57dp"
             android:layout_marginRight="57dp"
             android:id="@+id/rp_fl"
-            android:layout_width="296dp"
-            android:layout_height="296dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_gravity="center">
 
             <com.example.laileon.customview.view.RippleBackground
