@@ -110,4 +110,7 @@
     <color name="whiteTransparent">#88FFFFFF</color>
 
     <color name="rippelColor">#0099CC</color>
+
+    <color name="blink_color">#b1b1b1</color>
+    <color name="shimmer_color">#a2878787</color>
 </resources>
